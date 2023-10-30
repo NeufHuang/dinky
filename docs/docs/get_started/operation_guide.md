@@ -1,7 +1,7 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 id: operation_guide
-title: 作业教程
+title: toBeDeleted-作业教程
 ---
 
 ## 作业开发

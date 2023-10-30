@@ -3,57 +3,78 @@ sidebar_position: 1
 id: quick_experience
 title: 快速体验
 ---
-## Docker 快速体验
+本篇将手把手带您在Dinky上使用`CDCSOURCE全库同步`和`FlinkSQL`两种方式进行MySQL-MySQL数据同步。
+## 环境要求
+基于已部署Dinky，Flink和MySQL环境，如未部署请参照[Docker快速部署](../get_started/docker_deploy "Docker快速部署")中`启动快速体验服务`部分。
 
-通过 dinky-mysql-server 和 dinky-standalone-server 镜像快速体验 Flink 实时计算平台。
+## 登录Dinky并添加Flink和MySQL数据源
+`IP:8888` 地址打开平台并 `admin/admin` 登录
 
-### 环境准备
+### 添加Flink实例
+在[运维中心](../) - 集群 - Flink实例 中新建实例
 
-需要 `Docker 1.13.1+`。
+[image-2023](http://www.aiwenmo.com/dinky/docs/zh-CN/quick_start/docker/none.png)
 
-### 启动 dinky-mysql-server 镜像
+添加MySQL数据源：
 
-启动该镜像提供 Dinky 的 Mysql 业务库能力。
 
-```sh
-docker run --name dinky-mysql dinkydocker/dinky-mysql-server:0.7.2
+## 创建作业
+创建名为 `功能示例` 的目录
+
+### 创建 MySQL 作业
+
+选择数据源：
+
+执行以下SQL导入源数据
+```sql
+create database testdb;
+create table
+```
+再执行以下SQL创建目标数据库
+```sql
+create database test；
 ```
 
-见以下内容证明启动成功：
 
-```java
-2023-03-08T12:04:23.520202Z 0 [Note] mysqld: ready for connections.
-Version: '5.7.41'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL)
+### 创建 FlinkSQL 作业
+
+#### CDCSOURCE全库同步
+```sql
+
 ```
 
-### 启动 dinky-standalone-server 镜像
+#### FlinkSQL单表同步
+```sql
 
-启动该镜像提供 Dinky 实时计算平台。
-
-```sh
-docker run --restart=always -p 8888:8888 -p 8081:8081  -e MYSQL_ADDR=dinky-mysql:3306 --name dinky --link dinky-mysql:dinky-mysql dinkydocker/dinky-standalone-server:0.7.2-flink14
 ```
+### 查看结果
 
-见以下内容证明启动成功：
 
-```java
-Dinky pid is not exist in /opt/dinky/run/dinky.pid
-FLINK VERSION : 1.14
-........................................Start Dinky Successfully........................................
-........................................Restart Successfully........................................
-```
 
-:::tip 说明
-如果 `docker image` 需要加速，请把 `dinkydocker` 替换成 `registry.cn-hangzhou.aliyuncs.com/dinky`
-:::
+### 控制台栏
+控制台：
 
-## 入门示例
+结果查询：
 
-### 创建作业
+BI：
 
-`IP:8888` 地址打开平台并 `admin/admin` 登录，创建 `功能示例` 目录，创建 `HelloWorld` 的 FlinkSQL 作业。
+血缘关系：
 
-执行模式选择 `Local` 并输入以下语句：
+
+
+
+## 结束语
+至此，到此Dinky的快速体验便已经结束，接下来
+
+
+
+
+
+
+
+---
+!! OLD，WAIT FOR EDIT
+---
 
 ```sql
 CREATE TABLE Orders (
@@ -77,6 +98,3 @@ select order_number,price,first_name,last_name,order_time from Orders
 
 ![image-20230308222416050](http://www.aiwenmo.com/dinky/docs/zh-CN/quick_start/docker/selecttable.png)
 
-## 结束语
-
-至此，FlinkSQL 的丝滑之旅已经开始，还不赶快邀请朋友一起探索这奇妙的 Dinky 实时计算平台。更多用法请看官网文档（ www.dlink.top ）。
