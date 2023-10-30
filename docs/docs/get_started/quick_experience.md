@@ -53,9 +53,10 @@ create database test；
 
 ### 控制台栏
 控制台：
+查看运行日志
 
 结果查询：
-
+可以查询FlinkSQL读取的数据
 BI：
 
 血缘关系：

@@ -41,15 +41,19 @@ services:
     network_mode: host
 
 ```
-在docker-compose.yaml文件目录下使用以下命令启动、删除docker容器
+在docker-compose.yaml文件目录下使用以下命令启动、删除docker容器。
 ```shell
 docker compose up -d
 docker compose down
 ```
 
 ### 使用 docker run 命令启动
-分别执行以下命令
+按需执行以下命令，如已有MySQL测试库和Flink集群可以仅部署Dinky。
 ```shell
+docker run ....
+
+docker run ....
+
 docker run ....
 ```
 
