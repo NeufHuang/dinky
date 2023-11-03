@@ -816,6 +816,18 @@
                             <replacement>project</replacement>
                         </replace>
                     </pom>
+                    <typescript>
+                        <includes>
+                            <!-- You have to set the target manually -->
+                            <include>dinky-web/src/**/*.ts</include>
+                            <include>dinky-web/src/**/*.tsx</include>
+                            <include>dinky-web/src/**/*.js</include>
+                        </includes>
+                        <licenseHeader>
+                            <file>style/license_header</file>
+                            <delimiter>(import|const|declare|let|export|export const|export default)</delimiter>
+                        </licenseHeader>
+                    </typescript>
                 </configuration>
                 <executions>
                     <execution>
@@ -947,7 +959,7 @@
             <id>flink-1.15</id>
             <properties>
                 <dinky.flink.version>1.15</dinky.flink.version>
-                <flink.version>1.15.2</flink.version>
+                <flink.version>1.15.4</flink.version>
 
             </properties>
         </profile>
@@ -956,7 +968,7 @@
             <id>flink-1.16</id>
             <properties>
                 <dinky.flink.version>1.16</dinky.flink.version>
-                <flink.version>1.16.0</flink.version>
+                <flink.version>1.16.2</flink.version>
 
             </properties>
         </profile>
