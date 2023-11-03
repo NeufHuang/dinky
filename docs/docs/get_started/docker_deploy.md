@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 id: docker_deploy
-title: Docker快速部署
+title: toBeDeleted-Docker快速部署
 ---
 
 新版本Dinky默认采用[H2](https://github.com/h2database/h2database "https://github.com/h2database/h2database") 作为后端数据库，因此只需拉起一个容器即可快速体验FlinkSQL丝滑之旅。

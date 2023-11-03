@@ -3,27 +3,66 @@ sidebar_position: 1
 id: quick_experience
 title: 快速体验
 ---
-本篇将手把手带您在Dinky上使用`CDCSOURCE全库同步`和`FlinkSQL`两种方式进行MySQL-MySQL数据同步。
+本篇将手把手带您在Dinky上使用`CDCSOURCE全库同步`和`FlinkSQL`两种方式进行MySQL-MySQL数据同步。  
+
 ## 环境要求
-基于已部署Dinky，Flink和MySQL环境，如未部署请参照[Docker快速部署](../get_started/docker_deploy "Docker快速部署")中`启动快速体验服务`部分。
+快速体验容器需要[Docker](https://docs.docker.com/engine/install/) 1.13.1+版本。  
+
+快速体验镜像已集成本章案例所需环境及依赖：   
+
+| Name    | Version |
+|---------|---------|
+| OpenJDK | 11      |
+| MySQL   | 8.0     |   
+| Flink   | 1.16.2  |   
+| CDC     | 2.4.1   |
+
+请执行以下命令启动快速体验容器，分别是dinky端口8888，mysql端口3306（可选），flink端口8081（可选），自行修改端口避开占用。
+```shell
+sudo docker run -itd -p 8888:8888 -p 3306:3306 -p 8081:8081 --name dinkyall dinky-qe:1.0
+```
+:::tip 注意  
+本镜像仅为快速体验提供，为避免产生不可预料风险，请避免在其他场景使用本镜像。  
+:::  
+如需要详细的镜像及容器化部署教程请参照[Docker快速部署](../deploy_guide/docker_deploy.md "Docker部署")。   
+如需要本地部署请参照[部署](../deploy_guide/deploy.mdx "部署")。
 
 ## 登录Dinky并添加Flink和MySQL数据源
-`IP:8888` 地址打开平台并 `admin/admin` 登录
+打开地址`localhost:8888`进入Dinky登录页面，输入`admin/admin` 登录 Dinky 
+
+
+`localhost:8081`可以看到Flink webui
+
 
 ### 添加Flink实例
-在[运维中心](../) - 集群 - Flink实例 中新建实例
+
+在[注册中心](../) - 集群 - Flink实例 中新建实例
+输入
 
 [image-2023](http://www.aiwenmo.com/dinky/docs/zh-CN/quick_start/docker/none.png)
 
-添加MySQL数据源：
+:::tip 说明
+Dinky目前支持多种FLink实例，本篇以Standalone为例，了解更多请参阅[环境配置](../deploy_guide/deploy.mdx "环境配置")。
+:::
+### 添加MySQL数据源
+
+在[注册中心](../) - 数据源 中添加MySQL数据源
+
+填完后点击测试,上方显示成功或失败
+
+:::tip 说明
+Dinky目前支持连接多种数据源，本篇以MySQL为例，了解更多请参阅[数据源](../deploy_guide/deploy.mdx "数据源")。
+:::
 
 
 ## 创建作业
-创建名为 `功能示例` 的目录
+
+创建名为 `快速体验` 的目录
 
 ### 创建 MySQL 作业
+此步骤将通过dinky在镜像集成的MySQL创建一个源库源表和目标库，为后续Flink作业提供数据基础
 
-选择数据源：
+右侧选择数据源：
 
 执行以下SQL导入源数据
 ```sql
@@ -67,35 +106,4 @@ BI：
 ## 结束语
 至此，到此Dinky的快速体验便已经结束了，接下来可以开始在Dinky上体验FlinkSQL的丝滑之旅了。
 
-
-
-
-
-
-
----
-!! OLD，WAIT FOR EDIT
----
-
-```sql
-CREATE TABLE Orders (
-    order_number BIGINT,
-    price        DECIMAL(32,2),
-    buyer        ROW<first_name STRING, last_name STRING>,
-    order_time   TIMESTAMP(3)
-) WITH (
-  'connector' = 'datagen',
-  'rows-per-second' = '1',
-  'number-of-rows' = '50'
-);
-select order_number,price,first_name,last_name,order_time from Orders 
-```
-
-![image-20230308222328163](http://www.aiwenmo.com/dinky/docs/zh-CN/quick_start/docker/helloword.png)
-
-### 调试查询
-
-点击 `执行按钮`（执行当前的SQL），下方切换至 `结果` 选项卡，点击 `获取最新数据` ，即可查看 Select 语句的执行结果。
-
-![image-20230308222416050](http://www.aiwenmo.com/dinky/docs/zh-CN/quick_start/docker/selecttable.png)
 
