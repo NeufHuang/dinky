@@ -1,9 +1,9 @@
 ---
 position: 2
 id: datasource_manage
-title: 数据源管理
+title: 数据源
 ---
-## 数据源管理列表
+## 数据源管理
 
 ![database_manager_list](http://www.aiwenmo.com/dinky/docs/zh-CN/administrator_guide/register_center/datasource_manage/database_manager_list.png)
 
@@ -15,25 +15,28 @@ title: 数据源管理
 
 ![create_database_jdbc_mysql](http://www.aiwenmo.com/dinky/docs/zh-CN/administrator_guide/register_center/datasource_manage/create_database_jdbc_mysql.png)
 
-**名称：** 输入英文唯一标识
+**名称：** 唯一标识，自定义
 
-**别名：** 自定义，默认同名称
+**分组类型：** 包括来源、数仓、应用、备份、其他，不选默认Default
 
-**分组类型：** 包括来源、数仓、应用、备份、其他
+**数据源类型：** 目前支持以下多种数据源   
+        OLTP：MySQL,Oracle,PostgreSQL,SQLServer,Phoenix  
+        OLAP：ClickHouse,Doris,StartRocks,Presto   
+        DataWarehouse/DataLake：Hive
 
-**url：** 数据库连接地址，如 jdbc:mysql://127.0.0.1:3306/dlink
+**url：** 数据库连接地址，如 jdbc:mysql://127.0.0.1:3306/dlink，点击输入框有常用的数据库示例
 
 **用户名：** 连接数据库的用户名
 
 **密码：** 连接数据库的密码
 
-**Flink 连接配置：** 避免私密信息泄露，同时作为全局变量复用连接配置，在FlinkSQL中可使用 **${名称}** 来加载连接配置，如 **${ods}**。说明：名称指的是英文唯一标识，即如图所示的名称。注意需要开启全局变量（原片段机制）
+**备注：** 自定义
+
+**Flink 连接配置：** 避免私密信息泄露，同时作为全局变量复用连接配置，在FlinkSQL中可使用 **${名称}** 来加载连接配置，如 **${ods}**。说明：名称指的是英文唯一标识，即如图所示的名称。注意需要开启全局变量（原片段机制）。更多参数请参考[全局变量](../)
 
 **Flink 连接模板：** Flink 连接模板作用是为生成 FlinkSQL DDL 而扩展的功能。其中 **${schemaName}** 动态获取数据库，**${tableName}** 动态获取表名称。更多参数请参考[Flink 官网](https://nightlies.apache.org/flink/flink-docs-master/docs/connectors/table/overview/)
 
-**注释：** 自定义
 
-**是否启用：** 默认禁用，需要开启
 
 Flink 连接配置 && Flink 连接模板 配置Demo: (以上图创建的`本地`数据源为例)
 
@@ -72,4 +75,9 @@ Flink 连接配置 && Flink 连接模板 配置Demo: (以上图创建的`本地`
 以上配置完成后可在 数据开发->左侧点击 元数据->选中当前创建的数据源 -> 展开库 -> 右键单击 表名 -> 点击 SQL生成 -> 查看FlinkDDL 即可看到成果
 ```
 
-当前数据库统一使用如上定义的参数名称配置数据源连接。当前支持的数据源详见 [扩展数据源](../../extend/function_expansion/datasource)。
+## 查询数据
+
+
+
+
+当前数据库统一使用如上定义的参数名称配置数据源连接。 如需增加数据源支持详见 [扩展数据源](../../extend/function_expansion/datasource)。
