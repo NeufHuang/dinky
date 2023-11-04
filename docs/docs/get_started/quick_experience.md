@@ -3,7 +3,8 @@ sidebar_position: 1
 id: quick_experience
 title: 快速体验
 ---
-本篇将手把手带您在Dinky上使用`CDCSOURCE全库同步`和`FlinkSQL`两种方式进行MySQL-MySQL数据同步。  
+Dinky除了有特色的全库同步语法外，同时还支持FlinkSQL和多种数据源的SQL开发。
+本篇以MySQL数据库为例，使用Dinky的数据开发功能手把手带您在Dinky上使用`CDCSOURCE全库同步`和`FlinkSQL`两种方式进行MySQL-MySQL数据同步。  
 
 ## 环境要求
 [Docker](https://docs.docker.com/engine/install/) 1.13.1+版本。  
