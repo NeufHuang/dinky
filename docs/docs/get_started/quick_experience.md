@@ -6,9 +6,10 @@ title: 快速体验
 本篇将手把手带您在Dinky上使用`CDCSOURCE全库同步`和`FlinkSQL`两种方式进行MySQL-MySQL数据同步。  
 
 ## 环境要求
-快速体验容器需要[Docker](https://docs.docker.com/engine/install/) 1.13.1+版本。  
+[Docker](https://docs.docker.com/engine/install/) 1.13.1+版本。  
 
-快速体验镜像已集成本章案例所需环境及依赖：   
+
+镜像已集成本章案例所需环境及依赖：   
 
 | Name    | Version |
 |---------|---------|  
@@ -24,37 +25,40 @@ title: 快速体验
 ```shell
 sudo docker run -itd -p 8888:8888 -p 3306:3306 -p 8081:8081 --name dinkyall dinky-qe:1.0
 ```
-:::tip 注意  
+  
+
+
+:::warning 注意  
 本镜像仅为快速体验提供，为避免产生不可预料风险，请避免在其他场景使用本镜像。  
 :::  
 如需要详细的镜像及容器化部署教程请参照[Docker快速部署](../deploy_guide/docker_deploy.md "Docker部署")。   
 如需要本地部署请参照[部署](../deploy_guide/deploy.mdx "部署")。
 
-## 登录Dinky并添加Flink和MySQL数据源
+## 登录Dinky并添加Flink实例和MySQL数据源
 打开地址`localhost:8888`进入Dinky登录页面，输入`admin/admin` 登录 Dinky 
 
 
-`localhost:8081`可以看到Flink webui
+如有暴露8081端口，`localhost:8081`可以看到Flink Dashboard
 
 
 ### 添加Flink实例
 
-在[注册中心](../) - 集群 - Flink实例 中新建实例
+在 **注册中心** - **[集群](../administrator_guide/register_center/cluster_manage.md "集群管理")** - Flink实例 中新建实例
 输入
 
-[image-2023](http://www.aiwenmo.com/dinky/docs/zh-CN/quick_start/docker/none.png)
+
 
 :::tip 说明
-Dinky目前支持多种FLink实例，本篇以Standalone为例，了解更多请参阅[环境配置](../deploy_guide/deploy.mdx "环境配置")。
+Dinky目前支持多种类型FLink实例，本篇以Standalone为例，了解更多请参阅[集群](../administrator_guide/register_center/cluster_manage.md "集群管理")。
 :::
 ### 添加MySQL数据源
 
-在[注册中心](../) - 数据源 中添加MySQL数据源
+在 **注册中心** - **[数据源](../administrator_guide/register_center/datasource_manage.md "数据源")** 中添加MySQL数据源
 
 填完后点击测试,上方显示成功或失败
 
 :::tip 说明
-Dinky目前支持连接多种数据源，本篇以MySQL为例，了解更多请参阅[数据源](../deploy_guide/deploy.mdx "数据源")。
+Dinky目前支持连接多种数据源，本篇以MySQL为例，了解更多请参阅[数据源](../administrator_guide/register_center/datasource_manage.md "数据源")。
 :::
 
 
